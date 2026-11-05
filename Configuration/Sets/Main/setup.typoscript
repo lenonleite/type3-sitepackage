@@ -1,0 +1,6 @@
+page = PAGE
+page {
+    # Use one template while learning, regardless of previously assigned layouts.
+    10 = FLUIDTEMPLATE
+    10.file = EXT:site_package/Resources/Private/Templates/Pages/Default.fluid.html
+}
