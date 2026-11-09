@@ -1,6 +1,16 @@
 page = PAGE
 page {
+    includeCSS.site_package = EXT:site_package/Resources/Public/Css/site.css
     # Use one template while learning, regardless of previously assigned layouts.
     10 = FLUIDTEMPLATE
     10.file = EXT:site_package/Resources/Private/Templates/Pages/Default.fluid.html
+    10.dataProcessing.10 = page-content
+    10.dataProcessing.20 = menu
+    10.dataProcessing.20 {
+        special = directory
+        special.value.data = site:rootPageId
+        levels = 1
+        includeNotInMenu = 0
+        as = mainMenu
+    }
 }

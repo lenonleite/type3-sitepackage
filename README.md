@@ -17,7 +17,56 @@ Installing the package does not activate its set on an existing site.
 Select **Study: Simple site package** in **Sites > Setup** when ready to use it.
 Use one page theme for that site; replace its previous theme set when switching.
 
-This first template only displays a greeting. Content elements, navigation and
-CSS will be separate lessons. No custom PHP controller or database table is needed.
+## Main content
+
+In the page properties, choose **Appearance > Backend Layout > Study: Main content and sidebar**.
+Then open **Content > Layout**, select that page, and add a **Text** element in
+**Main content**. Save and preview the page.
+
+`page.tsconfig` defines Main content (`colPos = 0`, identifier `main`) and Sidebar
+(`colPos = 1`, identifier `sidebar`). Add text to either area in **Content > Layout**. The
+`page-content` processor loads its records, and `<f:render.contentArea>` renders
+them using Fluid Styled Content. Each page displays its own content.
+
+The existing layout identifier is unchanged, so pages already using the Study
+layout gain the Sidebar area automatically. `Resources/Public/Css/site.css` uses
+a two-column grid on wide screens and stacks the areas on narrow screens.
+
+The greeting remains in the template. No custom PHP controller or database table is needed.
+
+## Navigation
+
+The `menu` processor loads the site root's direct children as `mainMenu`.
+Fluid renders their links in page-tree order, using the navigation title when
+set, otherwise the page title. The current page has `aria-current="page"` and a
+visual highlight. Hidden pages, pages disabled in menus and folders are excluded.
+Nested pages are not listed; this lesson has one menu level.
+
+To add a link, create and enable a page directly below the site root, keeping
+**Page enabled in menus** switched on. No template edit is needed.
+
+## Tests and quality
+
+From the DDEV project root:
+
+```sh
+ddev exec composer --working-dir=packages/site_package install
+ddev exec composer --working-dir=packages/site_package check
+```
+
+From a standalone checkout, use `composer install` and `composer check`.
+`check` runs PHPCS, PHP-CS-Fixer, PHPStan and PHPUnit. Use `composer test` for
+tests alone, or `composer cs:fix` to apply PHP formatting.
+
+Functional tests verify content placement, sorting, visibility, page isolation,
+empty areas, the published stylesheet and menu visibility, ordering and current-page
+state. They boot TYPO3 with only our site
+package and standard content rendering, using an isolated SQLite database.
+They do not use your site's records or depend on Camino or Events.
+Browser layout at different screen widths is not covered by these PHP tests.
+
+PHP needs PDO SQLite for testing. TYPO3 Testing Framework 10 uses an explicit
+`@dev` requirement for TYPO3 14. Generated dependencies and test data are ignored
+by Git. GitHub Actions runs the checks on PHP 8.2 and 8.4.
 
 [TYPO3 site-package tutorial](https://docs.typo3.org/m/typo3/tutorial-sitepackage/14.3/en-us/MinimalExample/Index.html)

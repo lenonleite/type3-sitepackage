@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<ruleset name="Study site package">
+    <description>PSR-12 checks for the site-package tests.</description>
+    <file>Tests</file>
+    <arg name="extensions" value="php"/>
+    <arg value="sp"/>
+    <rule ref="PSR12"/>
+</ruleset>
