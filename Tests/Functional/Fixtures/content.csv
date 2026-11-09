@@ -1,0 +1,18 @@
+"pages"
+,"uid","pid","title","slug","doktype","is_siteroot","backend_layout","hidden","nav_hide","sorting","nav_title"
+,1,0,"Test home","/",1,1,"pagets__study_default",0,0,0,""
+,2,1,"Other page","/other",1,0,"pagets__study_default",0,0,256,""
+,3,1,"About page","/about",1,0,"pagets__study_default",0,0,128,"About us"
+,4,1,"Hidden page","/hidden",1,0,"pagets__study_default",1,0,384,""
+,5,1,"Not in menu","/unlisted",1,0,"pagets__study_default",0,1,512,""
+,6,2,"Nested page","/other/nested",1,0,"pagets__study_default",0,0,128,""
+,7,1,"Records folder","/records",254,0,"",0,0,640,""
+
+"tt_content"
+,"uid","pid","CType","header","bodytext","colPos","sorting","hidden"
+,1,1,"text","Main later","<p>Main later body</p>",0,256,0
+,2,1,"text","Main first","<p>Main first body</p>",0,128,0
+,3,1,"text","Sidebar note","<p>Sidebar body</p>",1,128,0
+,4,1,"text","Hidden note","<p>Hidden body</p>",1,256,1
+,5,2,"text","Other page note","<p>Other page body</p>",0,128,0
+,6,1,"text","Unmapped note","<p>Unmapped body</p>",9,128,0

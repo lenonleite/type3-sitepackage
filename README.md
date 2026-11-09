@@ -45,4 +45,28 @@ Nested pages are not listed; this lesson has one menu level.
 To add a link, create and enable a page directly below the site root, keeping
 **Page enabled in menus** switched on. No template edit is needed.
 
+## Tests and quality
+
+From the DDEV project root:
+
+```sh
+ddev exec composer --working-dir=packages/site_package install
+ddev exec composer --working-dir=packages/site_package check
+```
+
+From a standalone checkout, use `composer install` and `composer check`.
+`check` runs PHPCS, PHP-CS-Fixer, PHPStan and PHPUnit. Use `composer test` for
+tests alone, or `composer cs:fix` to apply PHP formatting.
+
+Functional tests verify content placement, sorting, visibility, page isolation,
+empty areas, the published stylesheet and menu visibility, ordering and current-page
+state. They boot TYPO3 with only our site
+package and standard content rendering, using an isolated SQLite database.
+They do not use your site's records or depend on Camino or Events.
+Browser layout at different screen widths is not covered by these PHP tests.
+
+PHP needs PDO SQLite for testing. TYPO3 Testing Framework 10 uses an explicit
+`@dev` requirement for TYPO3 14. Generated dependencies and test data are ignored
+by Git. GitHub Actions runs the checks on PHP 8.2 and 8.4.
+
 [TYPO3 site-package tutorial](https://docs.typo3.org/m/typo3/tutorial-sitepackage/14.3/en-us/MinimalExample/Index.html)
