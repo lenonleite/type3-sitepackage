@@ -1,4 +1,27 @@
-<main>
+<header class="site-header">
     <h1>Hello from our site package</h1>
     <p>This page is rendered by our own Fluid template.</p>
-</main>
+    <f:if condition="{mainMenu}">
+        <nav class="main-navigation" aria-label="Main navigation">
+            <ul>
+                <f:for each="{mainMenu}" as="item">
+                    <li>
+                        <a href="{item.link}" aria-current="{f:if(condition: item.current, then: 'page', else: 'false')}">{item.title}</a>
+                    </li>
+                </f:for>
+            </ul>
+        </nav>
+    </f:if>
+</header>
+<div class="page-columns">
+    <main>
+        <f:if condition="{content.main}">
+            <f:render.contentArea contentArea="{content.main}" />
+        </f:if>
+    </main>
+    <aside aria-label="Sidebar">
+        <f:if condition="{content.sidebar}">
+            <f:render.contentArea contentArea="{content.sidebar}" />
+        </f:if>
+    </aside>
+</div>

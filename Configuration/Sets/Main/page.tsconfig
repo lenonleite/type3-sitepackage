@@ -1,0 +1,21 @@
+mod.web_layout.BackendLayouts {
+    study_default {
+        title = Study: Main content and sidebar
+        config {
+            backend_layout {
+                colCount = 2
+                rowCount = 1
+                rows.1.columns.1 {
+                    name = Main content
+                    colPos = 0
+                    identifier = main
+                }
+                rows.1.columns.2 {
+                    name = Sidebar
+                    colPos = 1
+                    identifier = sidebar
+                }
+            }
+        }
+    }
+}

@@ -1,2 +1,4 @@
 name: study/site-package
 label: 'Study: Simple site package'
+dependencies:
+  - typo3/fluid-styled-content
